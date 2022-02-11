@@ -1,67 +1,67 @@
 version: "3"
 services:
-  pihole:
-    container_name: pihole
-    #image: pihole/pihole:v5.8.1
-    # pihole switched to date based release format after v5.8.1
-    image: pihole/pihole:2021.10.1
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "67:67/udp"
-      - "80:80/tcp"
-      - "443:443/tcp"
-    environment:
-      TZ: "America/Denver"
-      WEBPASSWORD: "{{pihole_password}}" ## Set admin password here
-    # Volumes store your data between container upgrades
-    volumes:
-       - "./etc-pihole/:/etc/pihole/"
-       - "./etc-dnsmasq.d/:/etc/dnsmasq.d/"
-    dns:
-      - 127.0.0.1
-      - 1.1.1.1
-    # Recommended but not required (DHCP needs NET_ADMIN)
-    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
-    cap_add:
-      - NET_ADMIN
-    restart: unless-stopped
-
-  plex: 
-    container_name: plex
-    #image: linuxserver/plex:1.23.3.4707-ebb5fe9f3-ls60
-    image: linuxserver/plex:version-1.24.5.5173-8dcc73a59
-    network_mode: "host"
-    volumes:
-      - plex-config:/config
-      - /data/disks/md2/movies:/movies
-      - /data/disks/md1/music:/music
-      - /data/disks/md1/tv:/tv
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - VERSION=docker
-      - UMASK_SET=022
-    restart: "unless-stopped"
-
-  sabnzbd:
-    container_name: sabnzbd
-    #image: linuxserver/sabnzbd:version-3.3.1
-    image: linuxserver/sabnzbd:3.4.2
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Denver
-    volumes:
-      - /data/disks/md1/sabnzbd/config:/config
-      - /data/disks/md1/sabnzbd/downloads:/downloads
-      - /data/disks/md1/sabnzbd/incomplete-downloads:/incomplete-downloads
-      - /data/disks/md1/sabnzbd/blackhole:/blackhole
-    ports:
-      - 8080:8080
-      - 9090:9090
-    restart: unless-stopped
-
+#  pihole:
+#    container_name: pihole
+#    #image: pihole/pihole:v5.8.1
+#    # pihole switched to date based release format after v5.8.1
+#    image: pihole/pihole:2021.10.1
+#    ports:
+#      - "53:53/tcp"
+#      - "53:53/udp"
+#      - "67:67/udp"
+#      - "80:80/tcp"
+#      - "443:443/tcp"
+#    environment:
+#      TZ: "America/Denver"
+#      WEBPASSWORD: "{{pihole_password}}" ## Set admin password here
+#    # Volumes store your data between container upgrades
+#    volumes:
+#       - "./etc-pihole/:/etc/pihole/"
+#       - "./etc-dnsmasq.d/:/etc/dnsmasq.d/"
+#    dns:
+#      - 127.0.0.1
+#      - 1.1.1.1
+#    # Recommended but not required (DHCP needs NET_ADMIN)
+#    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+#    cap_add:
+#      - NET_ADMIN
+#    restart: unless-stopped
+#
+#  plex:
+#    container_name: plex
+#    #image: linuxserver/plex:1.23.3.4707-ebb5fe9f3-ls60
+#    image: linuxserver/plex:version-1.24.5.5173-8dcc73a59
+#    network_mode: "host"
+#    volumes:
+#      - plex-config:/config
+#      - /data/disks/md2/movies:/movies
+#      - /data/disks/md1/music:/music
+#      - /data/disks/md1/tv:/tv
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - VERSION=docker
+#      - UMASK_SET=022
+#    restart: "unless-stopped"
+#
+#  sabnzbd:
+#    container_name: sabnzbd
+#    #image: linuxserver/sabnzbd:version-3.3.1
+#    image: linuxserver/sabnzbd:3.4.2
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - TZ=America/Denver
+#    volumes:
+#      - /data/disks/md1/sabnzbd/config:/config
+#      - /data/disks/md1/sabnzbd/downloads:/downloads
+#      - /data/disks/md1/sabnzbd/incomplete-downloads:/incomplete-downloads
+#      - /data/disks/md1/sabnzbd/blackhole:/blackhole
+#    ports:
+#      - 8080:8080
+#      - 9090:9090
+#    restart: unless-stopped
+#
   transmission:
     container_name: transmission
     image: ghcr.io/linuxserver/transmission
