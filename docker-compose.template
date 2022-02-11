@@ -89,8 +89,7 @@ volumes:
 
 networks:
   nas:
-    external: false
     ipam:
       driver: default
       config:
-        - 10.10.10.0/24
+        - subnet: "10.10.10.0/24"
