@@ -16,8 +16,8 @@ services:
       WEBPASSWORD: {{pihole_password}} ## Set admin password here
     # Volumes store your data between container upgrades
     volumes:
-       - "./etc-pihole/:/etc/pihole/"
-       - "./etc-dnsmasq.d/:/etc/dnsmasq.d/"
+       - "/data/disks/config/pihole/etc-pihole/:/etc/pihole/"
+       - "/data/disks/config/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/"
     dns:
       - 127.0.0.1
       - 1.1.1.1
