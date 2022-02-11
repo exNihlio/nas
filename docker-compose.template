@@ -44,24 +44,24 @@ services:
 #      - UMASK_SET=022
 #    restart: "unless-stopped"
 #
-#  sabnzbd:
-#    container_name: sabnzbd
-#    #image: linuxserver/sabnzbd:version-3.3.1
-#    image: linuxserver/sabnzbd:3.4.2
-#    environment:
-#      - PUID=1000
-#      - PGID=1000
-#      - TZ=America/Denver
-#    volumes:
-#      - /data/disks/md1/sabnzbd/config:/config
-#      - /data/disks/md1/sabnzbd/downloads:/downloads
-#      - /data/disks/md1/sabnzbd/incomplete-downloads:/incomplete-downloads
-#      - /data/disks/md1/sabnzbd/blackhole:/blackhole
-#    ports:
-#      - 8080:8080
-#      - 9090:9090
-#    restart: unless-stopped
-#
+  sabnzbd:
+    container_name: sabnzbd
+    #image: linuxserver/sabnzbd:version-3.3.1
+    image: linuxserver/sabnzbd:3.4.2
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Denver
+    volumes:
+      - /data/disks/md1/sabnzbd/config:/config
+      - /data/disks/md1/sabnzbd/downloads:/downloads
+      - /data/disks/md1/sabnzbd/incomplete-downloads:/incomplete-downloads
+      - /data/disks/md1/sabnzbd/blackhole:/blackhole
+    ports:
+      - 8080:8080
+      - 9090:9090
+    restart: unless-stopped
+
   transmission:
     container_name: transmission
     image: ghcr.io/linuxserver/transmission
