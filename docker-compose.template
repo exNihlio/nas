@@ -13,7 +13,7 @@ services:
 #      - "443:443/tcp"
 #    environment:
 #      TZ: "America/Denver"
-#      WEBPASSWORD: "{{pihole_password}}" ## Set admin password here
+#      WEBPASSWORD: {{pihole_password}} ## Set admin password here
 #    # Volumes store your data between container upgrades
 #    volumes:
 #       - "./etc-pihole/:/etc/pihole/"
@@ -71,8 +71,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
-      - USER="{{transmission_user}}"  ## Set username here
-      - PASS="{{transmission_password}}"  ## Set password here
+      - USER={{transmission_user}}  ## Set username here
+      - PASS={{transmission_password}}  ## Set password here
     volumes:
       - /data/disks/md1/transmission/config:/config
       - /data/disks/md1/transmission/downloads:/downloads
