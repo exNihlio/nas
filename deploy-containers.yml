@@ -1,0 +1,13 @@
+- hosts: localhost
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Render the docker-compose.yml file
+      template:
+        src: docker-compose.template
+        dest: docker-compose.yml
+
+    - name: Deploy the containers
+      docker_compose:
+        project_src: .
+        state: present
