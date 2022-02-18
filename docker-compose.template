@@ -9,8 +9,8 @@ services:
       - "53:53/tcp"
       - "53:53/udp"
       - "67:67/udp"
-      - "80:80/tcp"
-      - "443:443/tcp"
+      - "8008:80/tcp"
+      - "8443:443/tcp"
     environment:
       TZ: "America/Denver"
       WEBPASSWORD: {{pihole_password}} ## Set admin password here
