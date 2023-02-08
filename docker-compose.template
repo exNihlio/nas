@@ -2,9 +2,9 @@ version: "3"
 services:
   pihole:
     container_name: pihole
-    #image: pihole/pihole:v5.8.1
     # pihole switched to date based release format after v5.8.1
-    image: pihole/pihole:2021.10.1
+    #image: pihole/pihole:2021.10.1
+    image: pihole/pihole:2023.01.10
     ports:
       - "53:53/tcp"
       - "53:53/udp"
@@ -29,8 +29,8 @@ services:
 
   plex:
     container_name: plex
-    #image: linuxserver/plex:1.23.3.4707-ebb5fe9f3-ls60
-    image: linuxserver/plex:1.28.1
+    #image: linuxserver/plex:version-1.24.5.5173-8dcc73a59
+    image: linuxserver/plex:1.30.2.6563-3d4dc0cce-ls150
     network_mode: "host"
     volumes:
       - plex-config:/config
@@ -47,8 +47,8 @@ services:
 
   sabnzbd:
     container_name: sabnzbd
-    #image: linuxserver/sabnzbd:version-3.3.1
-    image: linuxserver/sabnzbd:3.4.2
+    #image: linuxserver/sabnzbd:3.4.2
+    image: linuxserver/sabnzbd:3.7.2
     environment:
       - PUID=1000
       - PGID=1000
@@ -83,11 +83,29 @@ services:
       - "51413:51413"
       - "51413:51413/udp"
     restart: unless-stopped
-
+      #elasticsearch:
+      #  container_name: elasticsearch
+      #  image: elasticsearch:8.3.3
+      #  environment:
+      #
+      #  volumes:
+      #    /data/disks/config/es-config:/config
+      #    /data/disks/elasticsearch/:/data
+      #  ports:
+      #    - 9200:9200
+      #    - 9300:9300
+      #kibana:
+      #  container_name: kibana
+      #  volumes:
+      #    /data/disks/config/kibana-config:/config
+      #    /data/disks/config/kibana-data:/data
+      #  ports:
+      #    - 5601:5601
+      #heartbeat:
+      #  container_name: heartbeat
 volumes:
   plex-config:
     driver: local
-
 networks:
   nas:
     ipam:
